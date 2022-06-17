@@ -61,7 +61,7 @@ function create-metadata-table($readmeFolder, $readmeName, $moniker, $msService,
   $lang = $LanguageDisplayName
   $langTitle = "Azure $serviceName SDK for $lang"
   # Generate the front-matter for docs needs
-  $metadataString = GenerateDocsMsMetadata -language $lang -langTitle $langTitle -serviceName $serviceName `
+  $metadataString = GenerateDocsMsMetadata -language $Language -languageDisplayName $LanguageDisplayName-langTitle $langTitle -serviceName $serviceName `
     -tenantId $TenantId -clientId $ClientId -clientSecret $ClientSecret `
     -msService $msService
   Add-Content -Path $readmePath -Value $metadataString
@@ -91,9 +91,8 @@ function update-metadata-table($readmeFolder, $readmeName, $serviceName, $msServ
   $readmeContent = Get-Content -Path $readmePath -Raw
   $null = $readmeContent -match "---`n*(?<metadata>(.*`n)*)---`n*(?<content>(.*`n)*)"
   $restContent = $Matches["content"]
-  $lang = $LanguageDisplayName
   $orignalMetadata = $Matches["metadata"]
-  $metadataString = GenerateDocsMsMetadata -language $lang -serviceName $serviceName `
+  $metadataString = GenerateDocsMsMetadata -language $Language -languageDisplayName $LanguageDisplayName -serviceName $serviceName `
     -tenantId $TenantId -clientId $ClientId -clientSecret $ClientSecret `
     -msService $msService
   $null = $metadataString -match "---`n*(?<metadata>(.*`n)*)---"
