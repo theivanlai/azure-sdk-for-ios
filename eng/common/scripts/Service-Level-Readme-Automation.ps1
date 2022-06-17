@@ -51,7 +51,7 @@ function create-metadata-table($readmeFolder, $readmeName, $moniker, $msService,
     $content += "[!INCLUDE [client-packages]($clientTableLink)]`r`n"
   }
   if (Test-Path (Join-Path $readmeFolder -ChildPath $mgmtTableLink)) {
-    $content = "## Management packages - $moniker`r`n"
+    $content += "## Management packages - $moniker`r`n"
     $content += "[!INCLUDE [mgmt-packages]($mgmtTableLink)]`r`n"
   }
   if (!$content) {
@@ -144,12 +144,11 @@ function generate-service-level-readme($readmeBaseName, $pathPrefix, $packageInf
   if ($clientPackageInfo) {
     generate-markdown-table -readmeFolder $readmeFolder -readmeName "$clientIndexReadme" -packageInfo $clientPackageInfo -moniker $moniker
   }
-  # TODO: we currently do not have the right decision on how we display mgmt packages. Will track the mgmt work in issue. 
-  # https://github.com/Azure/azure-sdk-tools/issues/3422
-  # $mgmtPackageInfo = $packageInfos.Where({ 'mgmt' -eq $_.Type }) | Sort-Object -Property Package
-  # if ($mgmtPackageInfo) {
-  #   generate-markdown-table -readmeFolder $readmeFolder -readmeName "$mgmtIndexReadme" -packageInfo $mgmtPackageInfo -moniker $moniker
-  # }
+
+  $mgmtPackageInfo = $packageInfos.Where({ 'mgmt' -eq $_.Type }) | Sort-Object -Property Package
+  if ($mgmtPackageInfo) {
+    generate-markdown-table -readmeFolder $readmeFolder -readmeName "$mgmtIndexReadme" -packageInfo $mgmtPackageInfo -moniker $moniker
+  }
   if (!(Test-Path (Join-Path $readmeFolder -ChildPath $serviceReadme))) {
     create-metadata-table -readmeFolder $readmeFolder -readmeName $serviceReadme -moniker $moniker -msService $msService `
       -clientTableLink $clientIndexReadme -mgmtTableLink $mgmtIndexReadme `
