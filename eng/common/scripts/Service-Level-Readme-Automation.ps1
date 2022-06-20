@@ -57,9 +57,7 @@ function create-metadata-table($readmeFolder, $readmeName, $moniker, $msService,
   if (!$content) {
     return
   }
-  $null = New-Item -Path $readmePath -Force
-  $lang = $LanguageDisplayName
-  $langTitle = "Azure $serviceName SDK for $lang"
+  $langTitle = "Azure $serviceName SDK for $LanguageDisplayName"
   # Generate the front-matter for docs needs
   # $Language, $LanguageDisplayName are the variables globally defined in Language-Settings.ps1
   $metadataString = GenerateDocsMsMetadata -language $Language -languageDisplayName $LanguageDisplayName -langTitle $langTitle -serviceName $serviceName `
