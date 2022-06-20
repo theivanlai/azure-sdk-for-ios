@@ -225,8 +225,6 @@ foreach($moniker in $monikers) {
     Write-Host "Building service: $service"
     
     $servicePackages = $packagesForService.Values.Where({ $_.ServiceName -eq $service })
-  
-  
     $serviceReadmeBaseName = ServiceLevelReadmeNameStyle -serviceName $service
     $hrefPrefix = "docs-ref-services"
   
