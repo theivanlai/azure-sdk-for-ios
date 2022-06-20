@@ -187,7 +187,6 @@ foreach ($service in $serviceNameList) {
   # All management packages go under a single `Management` header in the ToC
   $mgmtPackages = $packagesForToc.Values.Where({ $_.ServiceName -eq $service -and ('mgmt' -eq $_.Type) })
   $mgmtPackages = $mgmtPackages | Sort-Object -Property Package
-  $serviceReadmeBaseName = $service.ToLower().Replace(' ', '-').Replace('/', '-')
   $mgmtItems = @()
   foreach ($pkg in $mgmtPackages) {
     $mgmtItems += GetPackageNode -package $pkg
@@ -206,6 +205,7 @@ foreach ($service in $serviceNameList) {
     }
   }
 
+  $serviceReadmeBaseName = $service.ToLower().Replace(' ', '-').Replace('/', '-')
   $serviceTocEntry = [PSCustomObject]@{
     name            = $service;
     href            = "~/docs-ref-services/{moniker}/$serviceReadmeBaseName.md"
