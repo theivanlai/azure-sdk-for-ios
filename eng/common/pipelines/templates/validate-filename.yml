@@ -9,5 +9,5 @@ steps:
       exit 1
     }
     Write-Host "There are no files only differ in case. "
-  displayName: Validate on files only differ on cases
+  displayName: Validate file names do not only differ on case
   workingDirectory: $(System.DefaultWorkingDirectory)
