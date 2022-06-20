@@ -8,6 +8,6 @@ steps:
       $differByCaseFiles | Write-Error
       exit 1
     }
-    Write-Host "There are no files only differ in case. "
+    Write-Host "There are no file names that only differ in case."
   displayName: Validate file names do not only differ on case
   workingDirectory: $(System.DefaultWorkingDirectory)
