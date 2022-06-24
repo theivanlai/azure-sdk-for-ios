@@ -42,7 +42,7 @@ let package = Package(
         .target(
             name: "AzureCore",
             dependencies: [],
-            path: "Source",
+            path: "AzureCore/Source/AzureCore",
             exclude: [
                 "Source/Supporting Files",
                 "LICENSE"
@@ -52,7 +52,7 @@ let package = Package(
         .testTarget(
             name: "AzureCoreTests",
             dependencies: ["AzureCore"],
-            path: "Tests",
+            path: "AzureCoreTests/Tests/AzureCoreTests",
             exclude: [
                 "Info.plist",
                 "Data Files"
